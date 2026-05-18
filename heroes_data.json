@@ -1,0 +1,38 @@
+[
+    {
+        "name": "player",
+        "hp": -9,
+        "max_hp": 50,
+        "atk": 8,
+        "defense": 2,
+        "gold": 20,
+        "potions": 2,
+        "level": 1,
+        "exp": 0,
+        "exp_to_next": 10
+    },
+    {
+        "name": "player1",
+        "hp": 38,
+        "max_hp": 50,
+        "atk": 8,
+        "defense": 2,
+        "gold": 30,
+        "potions": 2,
+        "level": 1,
+        "exp": 5,
+        "exp_to_next": 10
+    },
+    {
+        "name": "mainplayer",
+        "hp": 60,
+        "max_hp": 60,
+        "atk": 10,
+        "defense": 3,
+        "gold": 40,
+        "potions": 2,
+        "level": 2,
+        "exp": 0,
+        "exp_to_next": 15
+    }
+]
