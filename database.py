@@ -9,6 +9,12 @@ load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")
 SECRET_KEY = os.getenv("SECRET_KEY")
 
+if DATABASE_URL is None:
+    raise ValueError("DATABASE_URL is not set! Please add it to Render environment variables.")
+
+if SECRET_KEY is None:
+    raise ValueError("SECRET_KEY is not set! Please add it to Render environment variables.")
+
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
