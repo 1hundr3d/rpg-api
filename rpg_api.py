@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from database import HeroDB, UserDB, get_db
+from database import HeroDB, UserDB, get_db, init_db
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException, Request, BackgroundTasks, Depends
 from fastapi.middleware.cors import CORSMiddleware
@@ -18,6 +18,7 @@ from jose import JWTError, jwt
 from passlib.context import CryptContext
 import os
 from dotenv import load_dotenv
+from sqlalchemy import inspect
 
 load_dotenv()
 
@@ -54,6 +55,7 @@ async def lifespan(app: FastAPI):
     """
     # Код, выполняемый при запуске сервера
     logger.info("Сервер запускается . . .")
+    init_db()
     yield
     # Код, выполняемый при выключении сервера
     logger.info("Сервер выключается . . .")
@@ -76,7 +78,9 @@ async def websocket_echo(websocket: WebSocket):
     except WebSocketDisconnect:
         logger.info("Соединение WebSocket закрыто.")
 
+
 active_connections: list[WebSocket] = []
+
 
 @app.websocket("/ws/chat")
 async def websocket_chat(websocket: WebSocket):
@@ -93,10 +97,15 @@ async def websocket_chat(websocket: WebSocket):
                 await conn.send_text(f"💬 {data}")
     except WebSocketDisconnect:
         active_connections.remove(websocket)
-        logger.info(f"Клиент отключился. Всего активных подключений: {len(active_connections)}")
+        logger.info(
+            f"Клиент отключился. Всего активных подключений: {len(active_connections)}"
+        )
 
         for conn in active_connections:
-            await conn.send_text(f"Пользоватеот отключился. Всего подключений: {len(active_connections)}")
+            await conn.send_text(
+                f"Пользоватеот отключился. Всего подключений: {len(active_connections)}"
+            )
+
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login2")
 
