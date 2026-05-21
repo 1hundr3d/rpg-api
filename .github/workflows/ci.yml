@@ -56,3 +56,26 @@ jobs:
 
             - name: Run tests 
               run: pytest test_rpg_api.py -v
+    build:
+        runs-on: ubuntu-latest
+        needs: test
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+            
+            - name: Log in to GHCR
+              uses: docker/login-action@v3
+              with:
+                 registry: ghcr.io
+                 username: ${{ github.actor }}
+                 password: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Build and Push Docker image
+              uses: docker/build-push-action@v6
+              with:
+                 context: .
+                 push: true
+                 tags: |
+                   ghcr.io/1hundr3d/rpg-api:latest
+                   ghcr.io/1hundr3d/rpg-api:${{ github.sha }}
