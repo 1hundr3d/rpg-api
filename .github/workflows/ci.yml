@@ -82,3 +82,6 @@ jobs:
                  tags: |
                    ghcr.io/1hundr3d/rpg-api:latest
                    ghcr.io/1hundr3d/rpg-api:${{ github.sha }}
+            - name: Trigger Render Deploy
+              run:
+                 curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
