@@ -27,6 +27,7 @@ jobs:
         
         env:
             DATABASE_URL: postgresql://testuser:testpass@localhost:5432/testdb
+            TEST_DATABASE_URL: postgresql://testuser:testpass@localhost:5432/testdb
             SECRET_KEY: supersecretkeyforci
         
         steps:

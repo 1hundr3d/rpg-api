@@ -289,3 +289,54 @@ pip install python-multipart
 2026-05-14 22:00:54 - INFO - GET /docs - завершен за 0.0007 сек.
 2026-05-14 22:00:54 - INFO - GET /openapi.json - начат
 2026-05-14 22:00:54 - INFO - GET /openapi.json - завершен за 0.0229 сек.
+2026-05-26 17:46:37 - INFO - Сервер запускается . . .
+2026-05-26 17:46:37 - INFO - GET /docs - начат
+2026-05-26 17:46:37 - INFO - GET /docs - завершен за 0.0007 сек.
+2026-05-26 17:46:37 - INFO - HTTP Request: GET http://testserver/docs "HTTP/1.1 200 OK"
+2026-05-26 17:46:37 - INFO - Сервер выключается . . .
+2026-05-26 17:46:37 - INFO - Сервер запускается . . .
+2026-05-26 17:46:37 - INFO - POST /auth/register - начат
+2026-05-26 17:46:38 - INFO - POST /auth/register - завершен за 0.2749 сек.
+2026-05-26 17:46:38 - INFO - HTTP Request: POST http://testserver/auth/register "HTTP/1.1 200 OK"
+2026-05-26 17:46:38 - INFO - Сервер выключается . . .
+2026-05-26 17:46:38 - INFO - Сервер запускается . . .
+2026-05-26 17:46:38 - INFO - POST /auth/register - начат
+2026-05-26 17:46:38 - INFO - POST /auth/register - завершен за 0.2507 сек.
+2026-05-26 17:46:38 - INFO - HTTP Request: POST http://testserver/auth/register "HTTP/1.1 200 OK"
+2026-05-26 17:46:38 - INFO - POST /auth/register - начат
+2026-05-26 17:46:38 - INFO - POST /auth/register - завершен за 0.0024 сек.
+2026-05-26 17:46:38 - INFO - HTTP Request: POST http://testserver/auth/register "HTTP/1.1 400 Bad Request"
+2026-05-26 17:46:38 - INFO - Сервер выключается . . .
+2026-05-26 17:46:38 - INFO - Сервер запускается . . .
+2026-05-26 17:46:38 - INFO - POST /auth/register - начат
+2026-05-26 17:46:38 - INFO - POST /auth/register - завершен за 0.2761 сек.
+2026-05-26 17:46:38 - INFO - HTTP Request: POST http://testserver/auth/register "HTTP/1.1 200 OK"
+2026-05-26 17:46:38 - INFO - POST /auth/login - начат
+2026-05-26 17:46:39 - INFO - POST /auth/login - завершен за 0.2424 сек.
+2026-05-26 17:46:39 - INFO - HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-05-26 17:46:39 - INFO - Сервер выключается . . .
+2026-05-26 17:46:39 - INFO - Сервер запускается . . .
+2026-05-26 17:46:39 - INFO - POST /auth/register - начат
+2026-05-26 17:46:39 - INFO - POST /auth/register - завершен за 0.2429 сек.
+2026-05-26 17:46:39 - INFO - HTTP Request: POST http://testserver/auth/register "HTTP/1.1 200 OK"
+2026-05-26 17:46:39 - INFO - POST /auth/login - начат
+2026-05-26 17:46:39 - INFO - POST /auth/login - завершен за 0.2323 сек.
+2026-05-26 17:46:39 - INFO - HTTP Request: POST http://testserver/auth/login "HTTP/1.1 401 Unauthorized"
+2026-05-26 17:46:39 - INFO - Сервер выключается . . .
+2026-05-26 17:46:39 - INFO - Сервер запускается . . .
+2026-05-26 17:46:39 - INFO - POST /auth/register - начат
+2026-05-26 17:46:39 - INFO - POST /auth/register - завершен за 0.2506 сек.
+2026-05-26 17:46:39 - INFO - HTTP Request: POST http://testserver/auth/register "HTTP/1.1 200 OK"
+2026-05-26 17:46:39 - INFO - POST /auth/login - начат
+2026-05-26 17:46:40 - INFO - POST /auth/login - завершен за 0.2324 сек.
+2026-05-26 17:46:40 - INFO - HTTP Request: POST http://testserver/auth/login "HTTP/1.1 200 OK"
+2026-05-26 17:46:40 - INFO - POST /hero/create - начат
+2026-05-26 17:46:40 - INFO - Пользователь testuser создал героя herotester
+2026-05-26 17:46:40 - INFO - POST /hero/create - завершен за 0.0082 сек.
+2026-05-26 17:46:40 - INFO - HTTP Request: POST http://testserver/hero/create "HTTP/1.1 200 OK"
+2026-05-26 17:46:40 - INFO - Сервер выключается . . .
+2026-05-26 17:46:40 - INFO - Сервер запускается . . .
+2026-05-26 17:46:40 - INFO - POST /hero/create - начат
+2026-05-26 17:46:40 - INFO - POST /hero/create - завершен за 0.0020 сек.
+2026-05-26 17:46:40 - INFO - HTTP Request: POST http://testserver/hero/create "HTTP/1.1 401 Unauthorized"
+2026-05-26 17:46:40 - INFO - Сервер выключается . . .
