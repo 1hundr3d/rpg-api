@@ -19,6 +19,7 @@ from passlib.context import CryptContext
 import os
 from dotenv import load_dotenv
 from sqlalchemy import inspect
+from cache import get_cache, set_cache
 
 load_dotenv()
 
@@ -508,6 +509,32 @@ def get_hero_by_query(
         "hero_isalive": hero.is_alive(),
     }
 
+@app.get("/heroes")
+def get_all_heroes(db: Session = Depends(get_db)):
+    cached = get_cache("heroes_list")
+    if cached is not None:
+        return cached
+
+    heroes = db.query(HeroDB).all()
+    result = [
+        {
+            "id": h.id,
+            "name": h.name,
+            "hp": h.hp,
+            "max_hp": h.max_hp,
+            "atk": h.atk,
+            "defense": h.defense,
+            "gold": h.gold,
+            "potions": h.potions,
+            "level": h.level,
+            "exp": h.exp,
+            "exp_to_next": h.exp_to_next,
+            "description": h.description,
+        }
+        for h in heroes
+    ]
+    set_cache("heroes_list", result, ttl=300)
+    return result
 
 @app.post("/battle/start")
 def start_battle(

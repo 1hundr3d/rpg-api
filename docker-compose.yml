@@ -17,6 +17,19 @@ services:
       timeout: 5s
       retries: 5
 
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+
 
   api:
     build: .
@@ -25,10 +38,14 @@ services:
     environment:
       DATABASE_URL: postgresql://postgres:12345@db:5432/rpg_db
       SECRET_KEY: mysecretkey1234567890
+      REDIS_URL: redis://redis:6379/0
     depends_on:
       db:
+        condition: service_healthy
+      redis:
         condition: service_healthy
     restart: on-failure
 
 volumes:
   postgres_data:
+  redis_data:
