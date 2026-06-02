@@ -19,7 +19,9 @@ from passlib.context import CryptContext
 import os
 from dotenv import load_dotenv
 from sqlalchemy import inspect
-from cache import get_cache, set_cache
+from cache import get_cache, set_cache, delete_cache
+from celery_app import example_background_task
+from prometheus_fastapi_instrumentator import Instrumentator
 
 load_dotenv()
 
@@ -64,6 +66,8 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="RPG + FastAPI", lifespan=lifespan)
 
+instrumentator = Instrumentator()
+instrumentator.instrument(app).expose(app)
 
 @app.websocket("/ws/echo")
 async def websocket_echo(websocket: WebSocket):
@@ -446,6 +450,8 @@ def create_hero(
     )
     db.add(hero_db)
     db.commit()
+    delete_cache("heroes_list")
+    example_background_task.delay(f"Новый герой создан: {request.name}", duration=10)
     logger.info(f"Пользователь {current_user.username} создал героя {request.name}")
 
     return GameState(

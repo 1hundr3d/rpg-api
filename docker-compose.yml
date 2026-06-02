@@ -29,8 +29,6 @@ services:
       timeout: 5s
       retries: 5
 
-
-
   api:
     build: .
     ports:
@@ -44,6 +42,32 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+    restart: on-failure
+  
+  worker:
+    build: .
+    command: celery -A celery_app worker --loglevel=info
+    environment:
+      REDIS_URL: redis://redis:6379/0
+      DATABASE_URL: postgresql://postgres:12345@db:5432/rpg_db
+      SECRET_KEY: mysecretkey1234567890
+    depends_on:
+      redis:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+    restart: on-failure
+  
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    depends_on:
+      - api
     restart: on-failure
 
 volumes:
